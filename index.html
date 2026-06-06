@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <meta name="theme-color" content="#0a2e25">
+    
+    <title>Fuel Cost Comparer | EV vs Petrol vs Diesel | 24 Countries & India States</title>
+    
+    <meta name="description" content="Compare EV charging, petrol and diesel costs across 24 countries. India state-level data included. Live INR/USD conversion, interactive charts, side-by-side comparison.">
+    <meta name="keywords" content="fuel cost comparator, EV vs petrol, diesel price, compare countries, compare indian states, fuel price comparison, electric vehicle cost">
+    <meta name="author" content="FuelSense Analytics">
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+    
+    <link rel="canonical" href="https://www.fuelcostcomparer.com/">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <meta name="msapplication-TileColor" content="#0a2e25">
+    <meta name="msapplication-TileImage" content="/mstile-144x144.png">
+    
+    <!-- Alternate language links -->
+    <link rel="alternate" hreflang="en" href="https://www.fuelcostcomparer.com/">
+    <link rel="alternate" hreflang="x-default" href="https://www.fuelcostcomparer.com/">
+    
+    <meta property="og:title" content="Fuel Cost Comparer | Compare EV, Petrol & Diesel">
+    <meta property="og:description" content="Compare fuel costs across 24 countries and Indian states. Interactive charts, live currency conversion, side-by-side comparison.">
+    <meta property="og:url" content="https://www.fuelcostcomparer.com/">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://www.fuelcostcomparer.com/og-image.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:locale" content="en_US">
+    <meta property="og:site_name" content="Fuel Cost Comparer">
+    
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Fuel Cost Comparer | EV vs Petrol vs Diesel">
+    <meta name="twitter:description" content="Compare fuel costs across 24 countries and Indian states. Live charts, INR/USD conversion.">
+    <meta name="twitter:image" content="https://www.fuelcostcomparer.com/og-image.png">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdn.tailwindcss.com">
+    <link rel="preconnect" href="https://cdn.jsdelivr.net">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com/3.4.1"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+    <script type="importmap">
+    {
+        "imports": {
+            "three": "https://unpkg.com/three@0.128.0/build/three.module.js"
+        }
+    }
+</script>
+    
+    <link rel="stylesheet" href="style.css">
+    <style>
+    body { background: #0a2e25; color: white; font-family: Arial, sans-serif; }
+    .glass-panel { background: rgba(10,46,37,0.9); border-radius: 16px; padding: 20px; }
+</style>
+
+</head>
+<body class="antialiased">
+    <canvas id="bg-canvas" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; pointer-events: none;"></canvas>
+
+<!-- Main Content -->
+<main class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 md:py-10">
+    
+    <!-- Hero Section -->
+    <div class="text-center mb-8 md:mb-12">
+        <div class="inline-flex items-center gap-2 bg-black/10 backdrop-blur-sm rounded-full px-4 py-1.5 mb-4">
+            <span class="text-yellow-500 text-sm">⚡</span>
+            <span class="text-xs font-semibold text-gray-700">Built for Speed. Engineered for Intelligence.</span>
+        </div>
+        <h1 class="text-4xl md:text-5xl font-bold text-white mb-2">Fuel Cost Comparer</h1>
+        <p class="text-gray-300 mt-3 max-w-2xl mx-auto" id="compareText">Comparing: <span class="font-bold text-emerald-400">India</span> vs <span class="font-bold text-emerald-400">USA</span></p>
+    </div>
+
+    <!-- COMPARE MODE SELECTOR -->
+    <div class="flex justify-center mb-8">
+        <div class="bg-white/80 backdrop-blur-sm rounded-full p-1 shadow-md inline-flex gap-2">
+            <button id="modeCountryBtn" class="mode-btn active px-6 py-2.5 rounded-full font-semibold transition-all text-sm md:text-base">🌍 Compare Countries</button>
+            <button id="modeStateBtn" class="mode-btn px-6 py-2.5 rounded-full font-semibold transition-all text-sm md:text-base">🇮🇳 Compare Indian States</button>
+        </div>
+    </div>
+
+    <!-- COUNTRY COMPARE MODE -->
+    <div id="countryModePanel" class="mode-panel">
+        <div class="glass-panel rounded-2xl shadow-xl p-5 mb-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="border-r border-gray-200 pr-0 md:pr-6">
+                    <div class="flex items-center gap-2 mb-4">
+                        <span class="bg-blue-100 text-blue-700 text-xs font-bold px-3 py-1 rounded-full">LOCATION 1</span>
+                    </div>
+                    <label for="countryA" class="block text-sm font-semibold text-gray-700 mb-2">🌍 Select Country</label>
+<select id="countryA" class="w-full p-3 border border-gray-300 rounded-xl bg-white shadow-sm focus:ring-2 focus:ring-blue-400 outline-none"></select>
+                </div>
+                <div>
+                    <div class="flex items-center gap-2 mb-4">
+                        <span class="bg-green-100 text-green-700 text-xs font-bold px-3 py-1 rounded-full">LOCATION 2</span>
+                    </div>
+                   <label for="countryB" class="block text-sm font-semibold text-gray-700 mb-2">🌍 Select Country</label>
+<select id="countryB" class="w-full p-3 border border-gray-300 rounded-xl bg-white shadow-sm"></select>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- STATE COMPARE MODE -->
+    <div id="stateModePanel" class="mode-panel hidden">
+        <div class="glass-panel rounded-2xl shadow-xl p-5 mb-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="border-r border-gray-200 pr-0 md:pr-6">
+                    <div class="flex items-center gap-2 mb-4">
+                        <span class="bg-blue-100 text-blue-700 text-xs font-bold px-3 py-1 rounded-full">STATE 1</span>
+                    </div>
+                    <label for="stateA" class="block text-sm font-semibold text-gray-700 mb-2">📍 Select Indian State</label>
+<select id="stateA" class="w-full p-3 border border-gray-300 rounded-xl bg-white shadow-sm"></select>
+                </div>
+                <div>
+                    <div class="flex items-center gap-2 mb-4">
+                        <span class="bg-green-100 text-green-700 text-xs font-bold px-3 py-1 rounded-full">STATE 2</span>
+                    </div>
+                    <label for="stateB" class="block text-sm font-semibold text-gray-700 mb-2">📍 Select Indian State</label>
+<select id="stateB" class="w-full p-3 border border-gray-300 rounded-xl bg-white shadow-sm"></select>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Global Controls -->
+    <div class="glass-panel rounded-2xl shadow-xl p-5 mb-8">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div>
+               <label for="fuelTypeSelect" class="block text-sm font-semibold text-gray-700 mb-2">⛽ Filter Fuel Type</label>
+<select id="fuelTypeSelect" class="w-full p-3 border border-gray-300 rounded-xl bg-white shadow-sm">
+    <option value="all">All (EV / Petrol / Diesel)</option>
+    <option value="ev">Electric only</option>
+    <option value="petrol">Petrol only</option>
+    <option value="diesel">Diesel only</option>
+</select>
+            </div>
+       <div>
+    <label for="currencyINR" class="block text-sm font-semibold text-gray-700 mb-2">💰 Currency</label>
+    <div class="flex gap-3" role="group" aria-label="Currency selection">
+        <button id="currencyINR" aria-label="Indian Rupee" class="currency-btn active flex-1 py-2.5 rounded-xl font-medium transition">🇮🇳 INR (₹)</button>
+        <button id="currencyUSD" aria-label="US Dollar" class="currency-btn flex-1 py-2.5 rounded-xl font-medium transition">🇺🇸 USD ($)</button>
+    </div>
+</div>
+            <div>
+               <label for="distanceKm" class="block text-sm font-semibold text-gray-700 mb-2">📏 Distance (km)</label>
+<input type="number" id="distanceKm" value="100" step="10" class="w-full p-3 border border-gray-300 rounded-xl bg-white shadow-sm">
+                <p class="text-xs text-gray-500 mt-1">EV: 6 km/kWh | Petrol: 16 km/L | Diesel: 18 km/L</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Comparison Chart -->
+    <div class="glass-panel rounded-2xl shadow-xl p-5 mb-8">
+        <h3 class="text-xl font-bold text-gray-800 mb-4 flex items-center gap-2">📊 <span>Price per Unit Comparison</span></h3>
+        <canvas id="comparisonChart" width="800" height="400" style="max-height: 450px; width: 100%;"></canvas>
+    </div>
+
+    <!-- Detailed Comparison Table -->
+    <div class="glass-panel rounded-2xl shadow-xl p-5 mb-8">
+        <h3 class="text-xl font-bold text-gray-800 mb-4 flex items-center gap-2">📋 <span>Detailed Cost Breakdown</span></h3>
+        <table class="w-full text-left border-collapse">
+        <thead>
+    <tr>
+        <th class="p-3">Fuel Type</th>
+        <th class="p-3" id="location1PriceHeader">Location 1<br><small>Price/Unit</small></th>
+        <th class="p-3" id="location1TripHeader">Location 1<br><small>Trip Cost</small></th>
+        <th class="p-3" id="location2PriceHeader">Location 2<br><small>Price/Unit</small></th>
+        <th class="p-3" id="location2TripHeader">Location 2<br><small>Trip Cost</small></th>
+        <th class="p-3">Difference</th>
+    </tr>
+</thead>
+            <tbody id="comparisonTableBody"></tbody>
+        </table>
+    </div>
+    
+    <!-- Location Details Cards -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+        <div class="glass-panel rounded-2xl shadow-xl p-5">
+            <h3 class="text-lg font-bold text-blue-700 mb-3" id="location1Header">📍 Location 1 Details</h3>
+            <div id="location1Details" class="space-y-2 text-sm">--</div>
+        </div>
+        <div class="glass-panel rounded-2xl shadow-xl p-5">
+            <h3 class="text-lg font-bold text-green-700 mb-3" id="location2Header">📍 Location 2 Details</h3>
+            <div id="location2Details" class="space-y-2 text-sm">--</div>
+        </div>
+    </div>
+    
+    <footer class="text-center text-gray-400 text-xs py-8 mt-4 border-t border-gray-200">
+    <p>Data: GlobalPetrolPrices.com, Indian Oil (June 2026). EV efficiency 6 km/kWh, Petrol 16 km/L, Diesel 18 km/L.</p>
+    
+    <!-- Add these links -->
+    <div class="flex justify-center gap-4 mt-3">
+        <a href="#" id="privacyLink" class="hover:text-emerald-400 transition">Privacy Policy</a>
+        <span>|</span>
+        <a href="#" id="termsLink" class="hover:text-emerald-400 transition">Terms of Use</a>
+        <span>|</span>
+        <a href="#" id="contactLink" class="hover:text-emerald-400 transition">Contact</a>
+    </div>
+    
+    <p class="mt-3">© 2026 FuelSense — Side-by-Side Fuel Cost Intelligence</p>
+</footer>
+</main>
+<script type="module" src="script.js"></script>
+<!-- Privacy Policy Modal -->
+<div id="privacyModal" class="modal hidden">
+    <div class="modal-content glass-panel p-6 rounded-2xl max-w-2xl mx-4">
+        <h2 class="text-2xl font-bold text-emerald-400 mb-4">Privacy Policy</h2>
+        <p class="text-gray-300 mb-3">Fuel Cost Comparer does not collect any personal information. All comparisons are done locally in your browser.</p>
+        <p class="text-gray-300 mb-3">We use Google AdSense which may use cookies to serve relevant ads. You can opt out at Google Ad Settings.</p>
+        <button id="closeModal" class="mt-4 px-4 py-2 bg-emerald-500 rounded-lg">Close</button>
+    </div>
+</div>
+
+<style>
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.8);
+    z-index: 10000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.modal.hidden { display: none; }
+</style>
+
+<script>
+// Modal functionality
+const privacyLink = document.getElementById('privacyLink');
+const termsLink = document.getElementById('termsLink');
+const contactLink = document.getElementById('contactLink');
+const modal = document.getElementById('privacyModal');
+const closeModal = document.getElementById('closeModal');
+
+function showModal(title, content) {
+    document.querySelector('#privacyModal h2').innerHTML = title;
+    document.querySelector('#privacyModal p:first-of-type').innerHTML = content;
+    modal.classList.remove('hidden');
+}
+
+privacyLink?.addEventListener('click', (e) => {
+    e.preventDefault();
+    showModal('Privacy Policy', 'Fuel Cost Comparer does not collect any personal information. All comparisons are done locally in your browser. We use Google AdSense which may use cookies to serve relevant ads.');
+});
+
+termsLink?.addEventListener('click', (e) => {
+    e.preventDefault();
+    showModal('Terms of Use', 'By using Fuel Cost Comparer, you agree that fuel prices are for informational purposes only. We are not responsible for any decisions made based on this data.');
+});
+
+contactLink?.addEventListener('click', (e) => {
+    e.preventDefault();
+    showModal('Contact Us', 'For questions or support, email: anik.m1107@gmail.com');
+});
+
+closeModal?.addEventListener('click', () => {
+    modal.classList.add('hidden');
+});
+</script>
+</body>
+</html>

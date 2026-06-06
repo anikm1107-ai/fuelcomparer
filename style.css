@@ -1,0 +1,389 @@
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
+}
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    background: linear-gradient(135deg, #0a2e25 0%, #051a14 100%);
+    min-height: 100vh;
+    color: #ffffff;
+    overflow-x: hidden;
+}
+
+/* ===== ALL TEXT VISIBLE ===== */
+body, p, span, div, li {
+    color: #ffffff;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    color: #ffffff;
+    font-weight: 700;
+}
+
+/* ===== GLASS MORPHISM PANELS ===== */
+.glass-panel {
+    background: rgba(10, 46, 37, 0.85);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(0, 184, 148, 0.35);
+    border-radius: 24px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+}
+
+.glass-panel:hover {
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3);
+    border-color: rgba(0, 184, 148, 0.5);
+}
+
+/* ===== MODE BUTTONS (Compare Countries / Compare Indian States) ===== */
+.mode-btn {
+    background: white !important;
+    color: #064e3b !important;
+    font-weight: 700 !important;
+    padding: 10px 24px;
+    border-radius: 40px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    border: none;
+}
+
+.mode-btn.active {
+    background: linear-gradient(145deg, #00b894, #009432) !important;
+    color: white !important;
+    box-shadow: 0 4px 15px rgba(0, 184, 148, 0.4);
+}
+
+/* ===== LOCATION BADGES (STATE 1, STATE 2, LOCATION 1, LOCATION 2) ===== */
+.bg-blue-100, .bg-green-100 {
+    background: linear-gradient(145deg, #00b894, #009432) !important;
+    color: white !important;
+    padding: 4px 12px !important;
+    border-radius: 20px !important;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+/* ===== LABELS ===== */
+label {
+    color: #d1fae5 !important;
+    font-weight: 600 !important;
+    margin-bottom: 8px;
+    display: block;
+}
+
+/* ===== SELECT DROPDOWNS ===== */
+select, select option {
+    color: #1f2937 !important;
+    background-color: #ffffff !important;
+    border: 1px solid #d1d5db !important;
+    border-radius: 12px;
+    padding: 12px;
+    width: 100%;
+    font-size: 14px;
+}
+
+select:focus {
+    border-color: #00b894 !important;
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(0, 184, 148, 0.2);
+}
+
+/* ===== INPUT FIELDS ===== */
+input {
+    color: #1f2937 !important;
+    background-color: #ffffff !important;
+    border: 1px solid #d1d5db !important;
+    border-radius: 12px;
+    padding: 12px;
+    width: 100%;
+    font-size: 14px;
+}
+
+input:focus {
+    border-color: #00b894 !important;
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(0, 184, 148, 0.2);
+}
+
+input::placeholder {
+    color: #9ca3af !important;
+}
+
+/* ===== CURRENCY BUTTONS ===== */
+.currency-btn {
+    background: linear-gradient(145deg, #00b894, #009432);
+    color: white !important;
+    border: none;
+    font-weight: 600;
+    padding: 10px;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.currency-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 184, 148, 0.4);
+}
+
+.currency-btn.active {
+    background: linear-gradient(145deg, #55efc4, #00b894);
+    color: #051a14 !important;
+    box-shadow: 0 0 15px rgba(85, 239, 196, 0.5);
+}
+
+/* ===== HERO BADGE ===== */
+.bg-black\/10 {
+    background: rgba(0, 0, 0, 0.2) !important;
+}
+
+.bg-black\/10 span {
+    color: #fbbf24 !important;
+}
+
+.bg-black\/10 .text-gray-700 {
+    color: #e5e7eb !important;
+}
+
+/* ===== TABLE STYLES ===== */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    table-layout: fixed;
+}
+
+th, td {
+    padding: 12px 10px;
+    text-align: left;
+    border-bottom: 1px solid rgba(0, 184, 148, 0.2);
+    word-wrap: break-word;
+}
+
+th {
+    color: #f0fdf4 !important;
+    font-weight: 700;
+}
+
+td {
+    color: #ffffff !important;
+}
+
+tbody tr:hover {
+    background: rgba(0, 184, 148, 0.1);
+}
+
+/* Table column widths */
+th:first-child, td:first-child {
+    width: 14%;
+}
+
+th:nth-child(2), td:nth-child(2),
+th:nth-child(3), td:nth-child(3),
+th:nth-child(4), td:nth-child(4),
+th:nth-child(5), td:nth-child(5) {
+    width: 17%;
+}
+
+th:last-child, td:last-child {
+    width: 18%;
+}
+
+/* Table container for responsiveness */
+.glass-panel:has(table) {
+    overflow-x: auto;
+    padding-bottom: 0;
+}
+
+/* ===== SAVINGS COLORS ===== */
+.savings-green {
+    color: #4ade80 !important;
+    font-weight: bold !important;
+}
+
+.savings-red {
+    color: #f87171 !important;
+    font-weight: bold !important;
+}
+
+.savings-gray {
+    color: #9ca3af !important;
+}
+
+/* ===== LOCATION CARDS ===== */
+#location1Details, #location2Details {
+    color: #ffffff !important;
+}
+
+#location1Details p, #location2Details p {
+    color: #ffffff !important;
+    margin-bottom: 10px;
+}
+
+#location1Details strong, #location2Details strong {
+    color: #55efc4 !important;
+}
+
+#location1Header, #location2Header {
+    color: #55efc4 !important;
+}
+
+/* ===== CHART STYLES ===== */
+canvas {
+    background: rgba(5, 26, 20, 0.4);
+    border-radius: 16px;
+    padding: 12px;
+    max-height: 400px;
+    width: 100%;
+}
+
+/* ===== FOOTER ===== */
+footer p {
+    color: #94a3b8 !important;
+    font-size: 11px;
+}
+
+/* ===== HELPER TEXT ===== */
+.text-xs, .text-gray-500, .mt-1 {
+    color: #9ca3af !important;
+}
+
+/* ===== GLOWING BORDER EFFECT ===== */
+#countryModePanel .glass-panel,
+#stateModePanel .glass-panel {
+    border: 1.5px solid rgba(0, 184, 148, 0.4);
+    animation: borderPulse 3s infinite;
+}
+
+@keyframes borderPulse {
+    0% { border-color: rgba(0, 184, 148, 0.3); box-shadow: 0 0 0px rgba(0, 184, 148, 0); }
+    50% { border-color: rgba(85, 239, 196, 0.7); box-shadow: 0 0 15px rgba(85, 239, 196, 0.2); }
+    100% { border-color: rgba(0, 184, 148, 0.3); box-shadow: 0 0 0px rgba(0, 184, 148, 0); }
+}
+
+/* ===== SCROLLBAR ===== */
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #0a2e25;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #00b894;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #55efc4;
+}
+
+/* ===== RESPONSIVE DESIGN ===== */
+@media (max-width: 1024px) {
+    .glass-panel {
+        padding: 1rem;
+    }
+    
+    th, td {
+        padding: 8px 6px;
+        font-size: 13px;
+    }
+}
+
+@media (max-width: 768px) {
+    h1 {
+        font-size: 28px !important;
+    }
+    
+    .mode-btn {
+        padding: 8px 16px;
+        font-size: 12px;
+    }
+    
+    th, td {
+        font-size: 11px;
+        padding: 6px 4px;
+    }
+    
+    .currency-btn {
+        padding: 8px;
+        font-size: 12px;
+    }
+    
+    label {
+        font-size: 13px;
+    }
+    
+    select, input {
+        padding: 10px;
+        font-size: 13px;
+    }
+}
+
+@media (max-width: 640px) {
+    .grid-cols-1.md\\:grid-cols-2 {
+        gap: 1rem;
+    }
+    
+    .glass-panel {
+        border-radius: 16px;
+    }
+    
+    table {
+        min-width: 600px;
+    }
+}
+
+/* ===== HELPER CLASSES ===== */
+.hidden {
+    display: none;
+}
+
+.text-center {
+    text-align: center;
+}
+
+/* ===== HERO TEXT ===== */
+#compareText {
+    color: #cbd5e1 !important;
+}
+
+#compareText .text-emerald-400 {
+    color: #34d399 !important;
+}
+
+/* ===== UNIT LABELS ===== */
+.price-unit {
+    font-size: 10px;
+    color: #9ca3af;
+}
+
+/* ===== THREE.JS CANVAS BACKGROUND ===== */
+#bg-canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    pointer-events: none;
+    opacity: 0.6;
+}
+
+/* ===== FILTER FUEL TYPE LABEL ===== */
+#fuelTypeSelect + label {
+    color: #d1fae5 !important;
+}
+
+/* ===== DISTANCE INPUT LABEL ===== */
+#distanceKm + label {
+    color: #d1fae5 !important;
+}
