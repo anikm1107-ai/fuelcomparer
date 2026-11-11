@@ -1,0 +1,57 @@
+# robots.txt - Ultimate SEO Configuration
+# Fuel Cost Comparer - SEO Optimized
+
+# ===== MAIN CRAWL RULES =====
+User-agent: *
+Allow: /
+Allow: /index.html
+Allow: /style.css
+Allow: /script.js
+Allow: /data.js
+
+# Disable unnecessary files
+Disallow: /loading.json
+Disallow: /og-image.png
+Disallow: /favicon.ico
+Disallow: /favicon-*.png
+Disallow: /apple-touch-icon.png
+Disallow: /android-chrome-*.png
+
+# Crawl delay (gentle on server)
+Crawl-delay: 1
+
+# ===== SITEMAP LOCATION =====
+Sitemap: https://www.fuelcomparer.netlify.app/sitemap-index.xml
+
+# ===== GOOGLE BOT =====
+User-agent: Googlebot
+Allow: /
+Crawl-delay: 0.5
+
+# ===== BING BOT =====
+User-agent: Bingbot
+Allow: /
+Crawl-delay: 0.5
+
+# ===== YANDEX =====
+User-agent: Yandex
+Allow: /
+Crawl-delay: 0.5
+
+# ===== DUCKDUCKGO =====
+User-agent: DuckDuckBot
+Allow: /
+Crawl-delay: 0.5
+
+# ===== BLOCK AI SCRAPERS (Optional) =====
+User-agent: GPTBot
+Disallow: /
+
+User-agent: CCBot
+Disallow: /
+
+User-agent: ChatGPT-User
+Disallow: /
+
+User-agent: Google-Extended
+Disallow: /

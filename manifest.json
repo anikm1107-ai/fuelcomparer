@@ -1,0 +1,22 @@
+{
+    "name": "Fuel Cost Comparer",
+    "short_name": "FuelCompare",
+    "description": "Compare EV, Petrol & Diesel costs across 24 countries",
+    "start_url": "/",
+    "display": "standalone",
+    "background_color": "#0a2e25",
+    "theme_color": "#0a2e25",
+    "orientation": "portrait",
+    "icons": [
+        {
+            "src": "/android-chrome-192x192.png",
+            "sizes": "192x192",
+            "type": "image/png"
+        },
+        {
+            "src": "/android-chrome-512x512.png",
+            "sizes": "512x512",
+            "type": "image/png"
+        }
+    ]
+}
